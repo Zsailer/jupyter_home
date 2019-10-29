@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>{% block title %}Jupyter Home{% endblock %}</title>
+    {% block favicon %}
+    <link id="favicon" rel="shortcut icon" type="image/x-icon" href="{{ static_url("favicon.ico") }}">{% endblock %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block meta %}
+    {% endblock %}
+
+    <link rel="stylesheet" href="{{ static_url("main.css") }}">
+
+</head>
+
+<body>
+
+    <div id="site">
+        <div class='jupyter-server-page-container'>
+
+            A Jupyter Server is running the following extensions:
+
+            <hr>
+            </hr>
+            <div class="jupyter-server-card-row">
+
+                {% for name, frontend in frontends.items() %}
+
+                <div class="jupyter-server-card-column">
+                    <a href="{{ frontend.default_url }}">
+                        <div class="jupyter-server-card">
+                            <img src="{{ frontend.static_url("home.svg") }}" style="width:100%">
+                        </div>
+                    </a>
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
