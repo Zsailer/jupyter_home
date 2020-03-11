@@ -29,12 +29,12 @@
             </hr>
             <div class="jupyter-server-card-row">
 
-                {% for name, frontend in frontends.items() %}
+                {% for name, data in frontend_data.items() %}
 
                 <div class="jupyter-server-card-column">
-                    <a href="{{ frontend.default_url }}">
+                    <a href="{{ data['default_url'] }}">
                         <div class="jupyter-server-card">
-                            <img src="{{ frontend.static_url("home.svg") }}" style="width:100%">
+                            <img src="{{ data['image_url'] }}" style="width:100%">
                         </div>
                     </a>
                 </div>
