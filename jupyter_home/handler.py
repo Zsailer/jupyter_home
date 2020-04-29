@@ -1,12 +1,19 @@
 from jupyter_server.base.handlers import JupyterHandler
-from jupyter_server.extension.handler import ExtensionHandlerMixin, ExtensionHandlerJinjaMixin
+from jupyter_server.extension.handler import (
+    ExtensionHandlerMixin,
+    ExtensionHandlerJinjaMixin
+)
 from jupyter_server.utils import url_path_join
 
-class MainHandler(ExtensionHandlerJinjaMixin, ExtensionHandlerMixin, JupyterHandler):
+class MainHandler(
+    ExtensionHandlerJinjaMixin,
+    ExtensionHandlerMixin,
+    JupyterHandler
+):
 
     @property
     def frontends(self):
-        return self.settings['frontends']
+        return self.settings['jupyter_home_frontends']
 
     @staticmethod
     def build_static_url(frontend):
@@ -19,11 +26,11 @@ class MainHandler(ExtensionHandlerJinjaMixin, ExtensionHandlerMixin, JupyterHand
         frontend_data = {}
         for f in self.frontends.values():
             frontend_data[f.extension_name] = {
-                "default_url": f.default_url,
-                "image_url": self.build_static_url(f)
+                "extension_url": f.extension_url,
+                "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg"
             }
 
-        tn['frontend_data'] = self.frontends
+        tn['frontend_data'] = frontend_data
         return tn
 
     def get(self):
