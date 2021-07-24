@@ -1,7 +1,6 @@
 from jinja2 import Environment, FileSystemLoader
 
 from jupyter_server.extension.application import ExtensionApp, ExtensionAppJinjaMixin
-from jupyter_server.extension.serverextension import _get_server_extension_metadata
 
 from .paths import DEFAULT_STATIC_FILES_PATH, DEFAULT_TEMPLATE_PATH_LIST
 from .handler import MainHandler
