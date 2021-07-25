@@ -5,6 +5,7 @@ from jupyter_server.extension.handler import (
 )
 from jupyter_server.utils import url_path_join
 
+
 class MainHandler(
     ExtensionHandlerJinjaMixin,
     ExtensionHandlerMixin,
@@ -24,12 +25,11 @@ class MainHandler(
     def template_namespace(self):
         tn = super(MainHandler, self).template_namespace
         frontend_data = {}
-        for f in self.frontends.values():
-            frontend_data[f.extension_name] = {
+        for extname, f in self.frontends.items():
+            frontend_data[extname] = {
                 "extension_url": f.extension_url,
                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg"
             }
-
         tn['frontend_data'] = frontend_data
         return tn
 
